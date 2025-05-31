@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>عيد أضحى مبارك - أبو البراء</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap');
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: url('https://www.transparenttextures.com/patterns/asfalt-light.png'), linear-gradient(to bottom, #fceabb, #f8b500);
+      color: #333;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .card {
+      position: relative;
+      z-index: 2;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      margin: 10vh auto;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      max-width: 500px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #c0392b;
+    }
+
+    p {
+      font-size: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .emoji {
+      font-size: 3rem;
+      margin-top: 1rem;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .audio-btn {
+      margin-top: 1.5rem;
+      background-color: #c0392b;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10px); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Falling Stars -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Main Card -->
+  <div class="card">
+    <h1>عيد أضحى مبارك!</h1>
+    <p>أعاده الله علينا وعليكم بالخير واليمن والبركات 🌙</p>
+    <p>مع أطيب التهاني من: <strong>أبو البراء</strong></p>
+    <div class="emoji">🐑🕋🌙</div>
+    <button class="audio-btn" onclick="toggleTakbeer()">تشغيل / إيقاف التكبيرات</button>
+    <div class="footer">🌟 كل عام وأنتم بخير 🌟</div>
+  </div>
+
+  <!-- Eid Takbeer Audio -->
+  <audio id="takbeer" loop>
+    <source src="https://www.islamcan.com/audio/eidtakbeer1.mp3" type="audio/mpeg">
+    متصفحك لا يدعم تشغيل الصوت.
+  </audio>
+
+  <!-- Sheep Sound on Load -->
+  <audio id="sheepSound" autoplay>
+    <source src="https://www.fesliyanstudios.com/play-mp3/387" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const takbeer = document.getElementById('takbeer');
+    const sheepSound = document.getElementById('sheepSound');
+
+    function toggleTakbeer() {
+      if (takbeer.paused) {
+        takbeer.play();
+      } else {
+        takbeer.pause();
+      }
+    }
+
+    // Stars generation
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 80; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDuration = (2 + Math.random() * 4) + 's';
+      star.style.animationDelay = Math.random() * 5 + 's';
+      starsContainer.appendChild(star);
+    }
+  </script>
+</body>
+</html>
